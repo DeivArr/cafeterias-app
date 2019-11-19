@@ -18,8 +18,11 @@ const reducer = (state = initialState, action) =>
             return { ...state, cafeterias: action.cafeteriasStoredInAPI }
         case "FetchDishes":
             return { ...state, dishes: action.dishesStoredInAPI }
-        case  ADD_DISH_TO_ARRAY: 
-            return { ...state, dishesToStoreInCafeteria: state.dishesToStoreInCafeteria.concat(action.dishElement)}
+        case  actionTypes.ADD_DISH_TO_ARRAY: 
+            return { 
+                    ...state, 
+                    dishesToStoreInCafeteria: state.dishesToStoreInCafeteria.concat(action.dishElement)
+                }
         case "ERROR":
             return { ...state, error: action.msg }
         default:
