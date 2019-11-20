@@ -7,6 +7,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { Container, Row, Col, Jumbotron, InputGroup, FormControl, Table, Button } from 'react-bootstrap';
 import { FaSearchengin } from 'react-icons/fa';
 import TableOfDishes from './TableOfDishes';
+import AddedDishes from './AddedDishes';
 
 class Home extends Component{
     componentDidMount(){
@@ -49,17 +50,7 @@ class Home extends Component{
                     <Row>
                         <Col md = {12}>
                             <br />
-                            <div>
-                                <div className="card">
-                                    <div className="card-body">
-                                        <h5 className="card-title">Burger King</h5> 
-                                        <h6 className="card-subtitle mb-2 text-muted">Entrada</h6>
-                                        <p className="card-text">Meat Stew</p>
-                                        <span className="badge badge-primary">Animal Protein</span>
-                                        <span className="badge badge-danger">Lactose</span>
-                                    </div>
-                                </div>
-                            </div>
+                            <AddedDishes listOfAddedDishes = {this.props.addedDishes} />
                             <br />
                         </Col>
                     </Row>
@@ -73,7 +64,8 @@ const mapStateToProps = (state) => {
     return {
         storedCafeterias: state.cafeterias,
         startDateCalendar: state.startDate,
-        storedDishes: state.dishes
+        storedDishes: state.dishes,
+        addedDishes: state.dishesToStoreInCafeteria
     };
 }
 

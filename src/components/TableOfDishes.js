@@ -49,7 +49,7 @@ const TableOfDishes = (props) => {
                                 </div>
                                 <div className="list-group listGroupInline">
                                     { (dish.Class.Lactose) ? <span className="list-group-item list-group-item-secondary"> Lactose </span> : '' }   
-                                    { (dish.Class.Lactose) ? <span className="list-group-item list-group-item-success"> Vegan </span> : '' }   
+                                    { (dish.Class.Vegan) ? <span className="list-group-item list-group-item-success"> Vegan </span> : '' }   
                                 </div>
                             </td>
                             <td>
