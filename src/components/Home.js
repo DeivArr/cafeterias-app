@@ -44,7 +44,7 @@ class Home extends Component{
                     </Row>
                     <Row>
                         <Col md = {12} className = "text-right">
-                            <Button variant="success" > Save </Button>
+                            <Button variant="success" onClick = { this.props.saveDishes.bind(this, this.props.addedDishes) } > Save </Button>
                         </Col>
                     </Row>
                     <Row>
@@ -74,7 +74,9 @@ const mapDispatchToProps = (dispatch) => {
         getCafeterias: () => dispatch(actionTypes.fetchCafeteriasFromAPI()),
         setDateForCalendar: (date) => dispatch( {type: actionTypes.SET_DATA_FOR_CALENDAR, dateFromCalendar: date}),
         getDishes: () => dispatch(actionTypes.fetchDishesFromAPI()),
-        onAddDishToArray: (dish) => dispatch({type: actionTypes.ADD_DISH_TO_ARRAY, dishElement: dish})
+        onAddDishToArray: (dish) => dispatch({type: actionTypes.ADD_DISH_TO_ARRAY, dishElement: dish}),
+        saveDishes: (dishes) => dispatch(actionTypes.saveDishesInAPI(dishes)),
+        deleteDish: (dishId) => dispatch(actionTypes.deleteDishFomAPI(dishId))
     };
 }
 

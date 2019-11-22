@@ -1,6 +1,37 @@
+import axios from 'axios';
 export const GET_DATA_CAFETERIAS = 'GET_DATA_CAFETERIAS';
 export const SET_DATA_FOR_CALENDAR = 'SET_DATA_FOR_CALENDAR';
 export const ADD_DISH_TO_ARRAY = 'ADD_DISH_TO_ARRAY';
+export const SAVE_DISH_IN_API = "SAVE_DISH_IN_API";
+export const DELETE_DISH_FROM_API = "DELETE_DISH_FROM_API";
+
+export const saveDishesInAPI = ( dishes ) => {
+    return (dispatch) => {
+        dishes.map(dish => (
+            axios.post('https://cafeterias-app.firebaseio.com/dishes.json', dish )
+            .then( response => {
+                dispatch({type: SAVE_DISH_IN_API});
+            } )
+            .catch( error => {
+                console.log(error);
+            } )
+        ))
+    };
+};
+
+export const deleteDishFomAPI = ( dishId ) => {
+    return (dispatch) => {
+        dishes.map(dish => (
+            axios.delete(`https://cafeterias-app.firebaseio.com/dishes/${dishId}.json`)
+            .then( response => {
+                dispatch({type: DELETE_DISH_FROM_API});
+            } )
+            .catch( error => {
+                console.log(error);
+            } )
+        ))
+    };
+};
 
 export const fetchCafeteriasFromAPI = () => {
 

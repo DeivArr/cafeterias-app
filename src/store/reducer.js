@@ -12,6 +12,10 @@ const reducer = (state = initialState, action) =>
 {
     switch(action.type)
     {
+        case actionTypes.DELETE_DISH_FROM_API: 
+            return state;
+        case actionTypes.SAVE_DISH_IN_API: 
+            return { ...state, dishesToStoreInCafeteria: [] }
         case actionTypes.SET_DATA_FOR_CALENDAR: 
             return { ...state, startDate: action.dateFromCalendar}
         case "FetchData":
