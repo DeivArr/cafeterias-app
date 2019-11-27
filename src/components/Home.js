@@ -1,18 +1,24 @@
 import React, {Component} from 'react'
-import ListOfCafeterias from  './ListOfCafeterias';
 import * as actionTypes from '../store/actions';
 import { connect } from 'react-redux';
-import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
-import { Container, Row, Col, Jumbotron, InputGroup, FormControl, Table, Button } from 'react-bootstrap';
-import { FaSearchengin } from 'react-icons/fa';
-import TableOfDishes from './TableOfDishes';
+import { Container, Row, Col, Jumbotron, InputGroup, FormControl, Table, Button, Nav } from 'react-bootstrap';
 import AddedDishes from './AddedDishes';
+import ExistingDishForm from './ExistingDishForm';
+import NewDishForm from './NewDishForm';
 
 class Home extends Component{
+    state = {
+        showExistingDishes: true
+    }
+
     componentDidMount(){
         this.props.getCafeterias(), 
         this.props.getDishes();
+    }
+
+    toggleTab(param){
+        this.setState({ showExistingDishes: param })
     }
 
     render(){
@@ -23,22 +29,30 @@ class Home extends Component{
                     <Row>
                         <Col md = {12}>
                             <Jumbotron>
-                                Restaurant: <ListOfCafeterias list = {this.props.storedCafeterias} />
-                                <br /><br />
-                                <span>Date: <DatePicker selected={this.props.startDateCalendar} onChange = {this.props.setDateForCalendar} /> </span>
-                                <br /><br />
-                                <InputGroup>
-                                    <InputGroup.Prepend>
-                                        <InputGroup.Text><FaSearchengin /></InputGroup.Text>
-                                    </InputGroup.Prepend>
-                                    <FormControl
-                                    placeholder="Search for a dish"
-                                    aria-label="dish"
-                                    aria-describedby="basic-addon1"
-                                    />
-                                </InputGroup>
+                                <Nav variant="tabs" defaultActiveKey="/home">
+                                    <Nav.Item>
+                                        <Nav.Link className = "nav-link active" onClick = {this.toggleTab.bind(this, true)} eventKey="home">Existing</Nav.Link>
+                                    </Nav.Item>
+                                    <Nav.Item>
+                                        <Nav.Link onClick = {this.toggleTab.bind(this, false)} eventKey="link-1">New</Nav.Link>
+                                    </Nav.Item>
+                                </Nav>
                                 <br />
-                                <TableOfDishes listOfDishes = {this.props.storedDishes} onAddDish = {this.props.onAddDishToArray} />
+                                <div style = {{display: this.state.showExistingDishes ? 'block': 'none'}}>
+                                    <ExistingDishForm 
+                                        storedCafeterias = {this.props.storedCafeterias} 
+                                        startDateCalendar={this.props.startDateCalendar} 
+                                        storedDishes = {this.props.storedDishes} 
+                                        onAddDishToArray = {this.props.onAddDishToArray} 
+                                        setDateForCalendar = {this.props.setDateForCalendar} />
+                                </div>
+                                <div style = {{display: !this.state.showExistingDishes ? 'block': 'none'}}>
+                                    <NewDishForm 
+                                        startDateCalendar={this.props.startDateCalendar} 
+                                        setDateForCalendar = {this.props.setDateForCalendar}
+                                        onAddDishToArray = {this.props.onAddDishToArray} 
+                                        storedCafeterias = {this.props.storedCafeterias} />
+                                </div>
                             </Jumbotron>
                         </Col>
                     </Row>

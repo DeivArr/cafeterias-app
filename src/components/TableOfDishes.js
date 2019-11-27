@@ -9,9 +9,7 @@ const TableOfDishes = (props) => {
             <Table striped bordered hover>
                 <thead>
                     <tr>
-                        <th>Cafeteria</th>
                         <th>Dish</th>
-                        <th>Date</th>
                         <th>Type</th>
                         <th>Allergen</th>
                         <th>Class</th>
@@ -21,13 +19,7 @@ const TableOfDishes = (props) => {
                     { props.listOfDishes.map( dish => (
                         <tr key = {dish.id}>
                             <td>
-                                { dish.Cafeteria }
-                            </td>
-                            <td>
                                 { dish.Name }
-                            </td>
-                            <td>
-                                <MdDateRange />{ dish.Date }
                             </td>
                             <td>
                                 { dish.Type }
