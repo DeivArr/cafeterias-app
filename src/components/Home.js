@@ -31,27 +31,27 @@ class Home extends Component{
                             <Jumbotron>
                                 <Nav variant="tabs" defaultActiveKey="/home">
                                     <Nav.Item>
-                                        <Nav.Link className = "nav-link active" onClick = {this.toggleTab.bind(this, true)} eventKey="home">Existing</Nav.Link>
+                                        <Nav.Link className = "nav-link active" onClick = {this.toggleTab.bind(this, true)} eventKey="home">New</Nav.Link>
                                     </Nav.Item>
                                     <Nav.Item>
-                                        <Nav.Link onClick = {this.toggleTab.bind(this, false)} eventKey="link-1">New</Nav.Link>
+                                        <Nav.Link onClick = {this.toggleTab.bind(this, false)} eventKey="link-1">Existing</Nav.Link>
                                     </Nav.Item>
                                 </Nav>
                                 <br />
                                 <div style = {{display: this.state.showExistingDishes ? 'block': 'none'}}>
+                                    <NewDishForm 
+                                        startDateCalendar={this.props.startDateCalendar} 
+                                        setDateForCalendar = {this.props.setDateForCalendar}
+                                        onAddDishToArray = {this.props.onAddDishToArray} 
+                                        storedCafeterias = {this.props.storedCafeterias} />
+                                </div>
+                                <div style = {{display: !this.state.showExistingDishes ? 'block': 'none'}}>
                                     <ExistingDishForm 
                                         storedCafeterias = {this.props.storedCafeterias} 
                                         startDateCalendar={this.props.startDateCalendar} 
                                         storedDishes = {this.props.storedDishes} 
                                         onAddDishToArray = {this.props.onAddDishToArray} 
                                         setDateForCalendar = {this.props.setDateForCalendar} />
-                                </div>
-                                <div style = {{display: !this.state.showExistingDishes ? 'block': 'none'}}>
-                                    <NewDishForm 
-                                        startDateCalendar={this.props.startDateCalendar} 
-                                        setDateForCalendar = {this.props.setDateForCalendar}
-                                        onAddDishToArray = {this.props.onAddDishToArray} 
-                                        storedCafeterias = {this.props.storedCafeterias} />
                                 </div>
                             </Jumbotron>
                         </Col>

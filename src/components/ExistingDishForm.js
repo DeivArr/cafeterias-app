@@ -28,12 +28,4 @@ const ExistingDishForm = (props) => {
     )
 }
 
-const mapStateToProps = (state) => {
-    return {
-        storedCafeterias: state.cafeterias,
-        startDateCalendar: state.startDate,
-        addedDishes: state.dishesToStoreInCafeteria
-    };
-}
-
 export default ExistingDishForm;

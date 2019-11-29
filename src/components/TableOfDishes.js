@@ -45,7 +45,7 @@ const TableOfDishes = (props) => {
                                 </div>
                             </td>
                             <td>
-                                <button type = "button" key = { dish.id } onClick = { () => props.onAddDish(dish) } className = "btn btn-primary" >Add</button>
+                                <button type = "button" key = { dish.id } onClick = { () => {props.onAddDish(dish), console.log(dish)} } className = "btn btn-primary" >Add</button>
                             </td>
                         </tr>
                     ))} 
