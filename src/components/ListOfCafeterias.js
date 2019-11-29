@@ -1,13 +1,13 @@
-import React, { useRef } from 'react'
+import React, {useEffect, useRef } from 'react'
 
 const ListOfCafeterias = (props) => {
 
     return (
-        <select onChange = {props.onCafeteriaSelect} >
+        <React.Fragment>
             { props.list.map( cafeteria => (
-                <option key = {cafeteria.name}> {cafeteria.name} </option>
+                <option value = {cafeteria.name} key = {cafeteria.name}> {cafeteria.name} </option>
             ))}
-        </select>
+        </React.Fragment>
     )
 }
 
