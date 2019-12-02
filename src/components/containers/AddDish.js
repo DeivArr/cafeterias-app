@@ -1,13 +1,13 @@
 import React, {Component} from 'react'
-import * as actionTypes from '../store/actions';
+import * as actionTypes from '../../store/actions';
 import { connect } from 'react-redux';
 import "react-datepicker/dist/react-datepicker.css";
 import { Container, Row, Col, Jumbotron, InputGroup, FormControl, Table, Button, Nav } from 'react-bootstrap';
-import AddedDishes from './AddedDishes';
-import ExistingDishForm from './ExistingDishForm';
-import NewDishForm from './NewDishForm';
+import AddedDishes from '../childComponents/AddedDishes';
+import ExistingDishForm from '../childComponents/ExistingDishForm';
+import NewDishForm from '../childComponents/NewDishForm';
 
-class Home extends Component{
+class AddDish extends Component{
     state = {
         showExistingDishes: true
     }
@@ -94,4 +94,4 @@ const mapDispatchToProps = (dispatch) => {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(AddDish);

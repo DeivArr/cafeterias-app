@@ -21,19 +21,15 @@ const NewDishForm = (props) => {
     const [dishDate, setDate] = useState('');
     const [dishCafeteria, setDishCafeteria] = useState('');
     const dishTypeRef = useRef('');
-    const dishCafeteriaRef = useRef('');
-
-    // useEffect(() => {
-    //     console.log(dishType);
-    // }, [dishType]);
+    const dishCafeteriaRefParam = useRef('');
 
     useEffect(() => {
         let date = new Date;
         setDishName('');
-        setDate(date.getFullYear() + '-' + date.getMonth() + '-' + date.getDate());
+        setDate(date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate());
         setDishType(dishTypeRef.current[0].value);
         setTimeout(() => {
-            setDishCafeteria(dishCafeteriaRef.current[0].value);
+            setDishCafeteria(dishCafeteriaRefParam.current[0].value);
         }, 2000);
     }, []);
 
@@ -56,10 +52,6 @@ const NewDishForm = (props) => {
 
         setActiveButton(e);
     }
-    
-    const onCafeteriaSelect = (e) => {
-        setCafeteria(e.target.value);
-    }
 
     return (
         <div>
@@ -70,9 +62,7 @@ const NewDishForm = (props) => {
                 </Form.Group>
 
                 Restaurant:
-                <select onChange = {onCafeteriaSelect} ref = {dishCafeteriaRef} >
-                    <ListOfCafeterias list = {props.storedCafeterias} />
-                </select>
+                <ListOfCafeterias dishCafeteriaRef = {dishCafeteriaRefParam} list = {props.storedCafeterias} />
                  
                 <br /><br />
                 <span>Date: <DatePicker onSelect = {(date) => {setDate(date.getDate + '-' + date.getMonth() + '-' + date.getFullYear())}} selected={props.startDateCalendar} onChange = {props.setDateForCalendar} /> </span>

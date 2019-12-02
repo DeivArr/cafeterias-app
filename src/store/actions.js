@@ -76,5 +76,22 @@ export const fetchDishesFromAPI = () => {
             .catch(err => dispatch(
                 { type: "ERROR",msg: "Unable to fetch data" }))
     }
+}
 
+export const fetchDishesFromAPIByDate = (date, dishesToSortByDate) => {
+
+    return (dispatch) => {
+        var dishesArray = [];
+        var filteredDishesByDate = dishesToSortByDate.map((dish) => {
+            var parts = JSON.stringify(dish.Date).replace(/["]/g, '').split('-');
+            var myDate = new Date(parts[0], parts[1] - 1, parts[2]);
+            
+            if(myDate >= date) 
+            {
+                dishesArray.push(dish);
+            }
+        })
+
+        dispatch({ type: "FetchDishes", dishesStoredInAPI: dishesArray })
+    }
 }

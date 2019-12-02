@@ -6,24 +6,14 @@ import {InputGroup, FormControl} from 'react-bootstrap';
 import { FaSearchengin } from 'react-icons/fa';
 
 const ExistingDishForm = (props) => {
+    const refCafeteriasParam = useRef('');
 
     return (
         <div>
-            {/* Restaurant: <ListOfCafeterias list = {props.storedCafeterias} /> */}
+            Restaurant: <ListOfCafeterias list = {props.storedCafeterias} />
             <br /><br />
             <span>Date: <DatePicker selected={props.startDateCalendar} onChange = {props.setDateForCalendar} /> </span>
             <br /><br />
-            <InputGroup>
-                <InputGroup.Prepend>
-                    <InputGroup.Text><FaSearchengin /></InputGroup.Text>
-                </InputGroup.Prepend>
-                <FormControl
-                placeholder="Search for a dish"
-                aria-label="dish"
-                aria-describedby="basic-addon1"
-                />
-            </InputGroup>
-            <br />
             <TableOfDishes listOfDishes = {props.storedDishes} onAddDish = {props.onAddDishToArray} />
         </div>
     )
