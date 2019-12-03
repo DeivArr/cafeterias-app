@@ -35,6 +35,7 @@ class Home extends Component{
                     </Row>
                 </Container>
             </div> 
+            
         )
     }
 }
