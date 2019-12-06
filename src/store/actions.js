@@ -4,6 +4,7 @@ export const SET_DATA_FOR_CALENDAR = 'SET_DATA_FOR_CALENDAR';
 export const ADD_DISH_TO_ARRAY = 'ADD_DISH_TO_ARRAY';
 export const SAVE_DISH_IN_API = "SAVE_DISH_IN_API";
 export const DELETE_DISH_FROM_API = "DELETE_DISH_FROM_API";
+export const DISHES_SORTED_BY_DATE = "DISHES_SORTED_BY_DATE";
 
 export const saveDishesInAPI = ( dishes ) => {
     return (dispatch) => {
@@ -78,11 +79,12 @@ export const fetchDishesFromAPI = () => {
     }
 }
 
-export const fetchDishesFromAPIByDate = (date, dishesToSortByDate) => {
+export const sortDishesByDate = (date, dishesToSortByDate) => {
 
     return (dispatch) => {
         var dishesArray = [];
-        var filteredDishesByDate = dishesToSortByDate.map((dish) => {
+        
+        dishesToSortByDate.map((dish) => {
             var parts = JSON.stringify(dish.Date).replace(/["]/g, '').split('-');
             var myDate = new Date(parts[0], parts[1] - 1, parts[2]);
             
@@ -92,6 +94,6 @@ export const fetchDishesFromAPIByDate = (date, dishesToSortByDate) => {
             }
         })
 
-        dispatch({ type: "FetchDishes", dishesStoredInAPI: dishesArray })
+        dispatch({ type: DISHES_SORTED_BY_DATE, dishesAlreadySorted: dishesArray })
     }
 }

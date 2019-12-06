@@ -4,10 +4,9 @@ import { connect } from 'react-redux';
 import "react-datepicker/dist/react-datepicker.css";
 import DatePicker from 'react-datepicker';
 import { Container, Row, Col, Jumbotron, InputGroup, FormControl, Table, Button, Nav } from 'react-bootstrap';
-import ListOfDishesForToday from '../childComponents/ListOfDishesForToday';
+import EditDishForm from '../childComponents/EditDishForm';
 
-class Home extends Component{
-
+class UpdateDish extends Component{
     componentDidMount(){
         this.props.getCafeterias(), 
         this.props.getDishes();
@@ -17,12 +16,17 @@ class Home extends Component{
         }, 1000)
     }
 
+    onEditDish = (dish) =>{
+
+    }
+
     refreshMenu = (date) => {
         this.props.setDateForCalendar(date);
         this.props.getMenuFromToday(date, this.props.storedDishes);
     }
 
-    render(){
+    render()
+    {
         return(
             <div>
                 <br />
@@ -33,13 +37,20 @@ class Home extends Component{
                                 <p>Look for a dish in an specific date, it will return the dishes bigger than the selected date</p>
                                 <span>Date: <DatePicker selected={this.props.startDateCalendar} onChange = {this.refreshMenu.bind(this)} /> </span>
                                 <br /><br />
-                                <ListOfDishesForToday listOfDishes = {this.props.dishesAlreadySorted} onAddDish = {this.props.onAddDishToArray}/>
+                                <ListOfDishesForToday visibleButton = {true} textInButton = {'Edit'} listOfDishes = {this.props.dishesAlreadySorted} onHandleDish = {this.onEditDish}/>
+                            </Jumbotron>
+                            <br /><br />
+                            <Jumbotron>
+                                <EditDishForm 
+                                startDateCalendar={this.props.startDateCalendar} 
+                                setDateForCalendar = {this.props.setDateForCalendar}
+                                onAddDishToArray = {this.props.onAddDishToArray} 
+                                storedCafeterias = {this.props.storedCafeterias} />
                             </Jumbotron>
                         </Col>
                     </Row>
                 </Container>
-            </div> 
-
+            </div>
         )
     }
 }
@@ -62,4 +73,4 @@ const mapDispatchToProps = (dispatch) => {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(UpdateDish);

@@ -45,6 +45,9 @@ const ListOfDishesForToday = (props) => {
                             <td>
                                 { dish.Date }
                             </td>
+                            <td style = {{visibility: props.visibleButton}} >
+                                <button type = "button" key = { dish.id } onClick = { () => {props.onHandleDish(dish), console.log(dish)} } className = "btn btn-primary" >{props.textInButton}</button>
+                            </td>
                         </tr>
                     ))} 
                 </tbody>
